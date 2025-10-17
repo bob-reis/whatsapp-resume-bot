@@ -56,31 +56,34 @@ export class WhatsAppIngestionClient {
   }
 
   private async handleMessage(message: Message): Promise<void> {
-    if (!message.from || !message.timestamp) {
+    if (!message.timestamp) {
       return;
     }
 
-    const chatId = message.from;
-    if (!this.isTargetChat(chatId)) {
+    const chat = await message.getChat();
+    const chatId = chat.id._serialized;
+
+    if (!chatId || !this.isTargetChat(chatId, chat.isGroup)) {
       return;
     }
 
     const type = message.hasMedia ? 'media' : 'text';
     const content = message.body ?? '[mensagem vazia]';
+    const sender = message._data.notifyName ?? message.author ?? message.from ?? chatId;
 
     await this.messageBuffer.append({
       chatId,
       messageId: message.id.id,
-      sender: message._data.notifyName ?? message.from,
+      sender,
       content,
       type,
       timestamp: message.timestamp * 1000,
     });
   }
 
-  private isTargetChat(chatId: string): boolean {
+  private isTargetChat(chatId: string, isGroup: boolean): boolean {
     if (env.targetChatIds.length === 0) {
-      return chatId.endsWith('@g.us');
+      return isGroup;
     }
 
     return env.targetChatIds.includes(chatId);
