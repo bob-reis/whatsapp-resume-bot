@@ -93,7 +93,14 @@ export class WhatsAppIngestionClient {
     const type = message.hasMedia ? 'media' : 'text';
     const content = message.body ?? '[mensagem vazia]';
     const contact = await message.getContact();
-    const sender = contact.pushname ?? contact.name ?? contact.number ?? message.from;
+    const authorId = message.author ?? message.from;
+    const sender =
+      (message as unknown as { _data?: { notifyName?: string } })._data?.notifyName?.trim() ??
+      contact.pushname?.trim() ??
+      contact.name?.trim() ??
+      contact.number?.trim() ??
+      (authorId ? authorId.replace(/@.+$/, '') : undefined) ??
+      'Participante';
 
     await this.messageBuffer.append({
       chatId,
