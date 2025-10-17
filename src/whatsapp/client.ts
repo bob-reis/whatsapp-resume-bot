@@ -22,7 +22,7 @@ export class WhatsAppIngestionClient {
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
       },
       authStrategy: new LocalAuth({
-        dataPath: path.resolve('.qr-session'),
+        dataPath: path.resolve(process.cwd(), 'storage', 'session'),
       }),
     });
 
