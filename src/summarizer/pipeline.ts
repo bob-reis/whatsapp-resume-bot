@@ -1,4 +1,4 @@
-import { encodingForModel, get_encoding } from '@dqbd/tiktoken';
+import { encoding_for_model, get_encoding, type TiktokenModel } from '@dqbd/tiktoken';
 import OpenAI from 'openai';
 import { env } from '../config/env';
 import { createLogger } from '../shared/logger';
@@ -113,7 +113,7 @@ export class SummarizerPipeline {
 
   private buildEncoder() {
     try {
-      return encodingForModel(env.openaiModel);
+      return encoding_for_model(env.openaiModel as unknown as TiktokenModel);
     } catch (error) {
       this.logger.warn('Falling back to cl100k_base encoder', { error });
       return get_encoding('cl100k_base');

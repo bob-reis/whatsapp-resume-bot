@@ -8,3 +8,5 @@ coverage
 .tmp/
 tmp/
 .qr-session/
+.wwebjs_cache/
+AGENTS.md

@@ -39,7 +39,7 @@ export class WhatsAppIngestionClient {
       logger.error('WhatsApp auth failure', { message: msg });
     });
 
-    this.client.on('message_create', (message) => {
+    this.client.on('message', (message) => {
       void this.handleMessage(message);
     });
 
@@ -67,11 +67,13 @@ export class WhatsAppIngestionClient {
 
     const type = message.hasMedia ? 'media' : 'text';
     const content = message.body ?? '[mensagem vazia]';
+    const contact = await message.getContact();
+    const sender = contact.pushname ?? contact.name ?? contact.number ?? message.from;
 
     await this.messageBuffer.append({
       chatId,
-      messageId: message.id.id,
-      sender: message._data.notifyName ?? message.from,
+      messageId: message.id._serialized,
+      sender,
       content,
       type,
       timestamp: message.timestamp * 1000,
