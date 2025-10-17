@@ -24,8 +24,8 @@ export class WhatsAppIngestionClient {
   async start(): Promise<void> {
     this.client = new Client({
       puppeteer: {
-        headless: 'new',
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+        headless: true,
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
