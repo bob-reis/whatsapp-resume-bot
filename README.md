@@ -108,6 +108,11 @@ Checklist de deploy:
 4. Use `npm start` como comando de produção.
 5. Verifique os logs, escaneie o QR novamente e valide o resumo manual.
 
+### Landing Page "CyberSec Brasil"
+- A pasta `public/` contém uma landing page estática (HTML/CSS/JS) que pode ser publicada em Vercel como fachada institucional.
+- O arquivo `vercel.json` aponta o `outputDirectory` para `public`, permitindo que o deploy do repositório sirva a landing page mesmo que o bot rode em outro ambiente.
+- Personalize o conteúdo em `public/index.html` e a identidade visual em `public/styles.css`.
+
 ## Personalizações
 - **Prompts**: ajuste `src/summarizer/prompts.ts` para mudar seções, idioma ou tom do output.
 - **Chunk size**: altere o limite em `SummarizerPipeline.chunkMessages` se quiser blocos maiores/menores.
