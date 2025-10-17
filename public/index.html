@@ -6,141 +6,192 @@
     <title>CyberSec Brasil — Comunidade de Segurança</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="hero">
-      <nav class="nav">
-        <div class="logo">CyberSec <span>Brasil</span></div>
+    <div class="scan-line"></div>
+
+    <nav>
+      <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%">
+        <div class="logo">CYBER<span>SEC</span></div>
         <div class="nav-links">
           <a href="#sobre">Sobre</a>
           <a href="#beneficios">Benefícios</a>
-          <a href="#contato">Entrar</a>
+          <a href="#contato">Contato</a>
         </div>
-        <a class="cta" href="https://chat.whatsapp.com/BvLPTibzM5rJVDZmaBNtAz" target="_blank" rel="noreferrer">Entrar no WhatsApp</a>
-      </nav>
-      <div class="hero-content">
-        <span class="tagline">Comunidade aberta • Segurança da Informação</span>
-        <h1>Troca de experiências reais entre profissionais e entusiastas de cibersegurança.</h1>
-        <p>
-          O CyberSec Brasil nasceu como um grupo de WhatsApp para conectar especialistas de todo o país. Compartilhamos alertas, indicamos oportunidades, trocamos estudos e aprendemos juntos — sempre com bom humor e respeito.
-        </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="https://chat.whatsapp.com/BvLPTibzM5rJVDZmaBNtAz" target="_blank" rel="noreferrer">Participar do grupo</a>
-          <a class="btn ghost" href="https://www.linkedin.com/groups/15432006/" target="_blank" rel="noreferrer">Conectar no LinkedIn</a>
-        </div>
+        <a class="nav-cta" href="https://chat.whatsapp.com/BvLPTibzM5rJVDZmaBNtAz" target="_blank" rel="noreferrer"
+          >Entrar Agora</a
+        >
       </div>
-      <div class="grid-hero">
-        <div class="card">
-          <h3>Conversas em tempo real</h3>
-          <p>Dicas práticas, incidentes em andamento, ferramentas úteis e aquele meme técnico para descontrair.</p>
-        </div>
-        <div class="card">
-          <h3>Rede colaborativa</h3>
-          <p>Pessoas acessíveis que ajudam com dúvidas, indicam cursos, vagas e iniciativas da comunidade.</p>
-        </div>
-        <div class="card">
-          <h3>Zero burocracia</h3>
-          <p>Entre e participe: não há rankings, paywall ou moderação engessada — apenas respeito mútuo.</p>
-        </div>
-      </div>
-    </header>
+    </nav>
 
-    <main>
-      <section id="beneficios" class="section">
-        <h2>Por que participar?</h2>
-        <div class="cards">
-          <article class="service">
-            <h3>Aprendizado contínuo</h3>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="tagline">// Comunidade Aberta</span>
+            <h1>Conectando especialistas em cibersegurança</h1>
+            <p>
+              Troca de experiências reais entre profissionais e entusiastas. Compartilhamos alertas, indicamos
+              oportunidades, trocamos estudos e aprendemos juntos — sempre com bom humor e respeito.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="btn btn-primary"
+                href="https://chat.whatsapp.com/BvLPTibzM5rJVDZmaBNtAz"
+                target="_blank"
+                rel="noreferrer"
+                >Participar do Grupo</a
+              >
+              <a
+                class="btn btn-secondary"
+                href="https://www.linkedin.com/groups/15432006/"
+                target="_blank"
+                rel="noreferrer"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+          <div class="hero-cards">
+            <div class="hero-card">
+              <h3>→ Real-time</h3>
+              <p>Dicas práticas, incidentes em andamento, ferramentas úteis e aquele meme técnico para descontrair.</p>
+            </div>
+            <div class="hero-card">
+              <h3>→ Colaboração</h3>
+              <p>Pessoas acessíveis que ajudam com dúvidas, indicam cursos, vagas e iniciativas da comunidade.</p>
+            </div>
+            <div class="hero-card">
+              <h3>→ Zero Burocracia</h3>
+              <p>Entre e participe: não há rankings, paywall ou moderação engessada — apenas respeito mútuo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios" class="benefits">
+      <div class="container">
+        <h2 class="section-title">// Por que participar?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <h3>Aprendizado Contínuo</h3>
             <p>Discussions sobre pentest, DFIR, AppSec, SOC, automação e muito mais.</p>
             <ul>
               <li>Compartilhamento de talk tracks e CTFs</li>
               <li>Resumos diários produzidos pela própria galera</li>
               <li>Alertas sobre vulnerabilidades críticas</li>
             </ul>
-          </article>
-          <article class="service">
-            <h3>Networking genuíno</h3>
+          </div>
+          <div class="benefit-card">
+            <h3>Networking Genuíno</h3>
             <p>Proximidade com profissionais de diversas empresas, sem scripts de venda.</p>
             <ul>
               <li>Troca de oportunidades de trabalho</li>
               <li>Parcerias para projetos open source</li>
               <li>Conexões que começam no Whats e evoluem para conferências</li>
             </ul>
-          </article>
-          <article class="service">
-            <h3>Clima leve</h3>
+          </div>
+          <div class="benefit-card">
+            <h3>Clima Leve</h3>
             <p>Zoação saudável, gifs e piadas com responsabilidade. Segurança também pode ser divertida.</p>
             <ul>
               <li>Moderação mínima, foco em respeito</li>
               <li>Eventos espontâneos, meetups e raids virtuais</li>
               <li>Espaço seguro para quem está começando</li>
             </ul>
-          </article>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="sobre" class="section inverse">
-        <div class="section-content">
-          <h2>Sobre o grupo</h2>
+    <section id="sobre" class="about">
+      <div class="container">
+        <div class="about-content">
+          <h2 class="section-title">// Sobre o Grupo</h2>
           <p>
-            Iniciamos como um grupo de amigos da área de cibersegurança que queriam compartilhar novidades sem perder tempo com ruído. Hoje somos centenas de profissionais e entusiastas do Brasil todo, preservando a mesma essência colaborativa.
+            Iniciamos como um grupo de amigos da área de cibersegurança que queriam compartilhar novidades sem perder
+            tempo com ruído. Hoje somos centenas de profissionais e entusiastas do Brasil todo, preservando a mesma
+            essência colaborativa.
           </p>
           <div class="pillars">
             <div class="pillar">
-              <span class="icon">🧠</span>
-              <div>
-                <h4>Conhecimento coletivo</h4>
-                <p>A cada dia, alguém traz um case novo, uma ferramenta fresh ou uma boa prática para o resto aprender.</p>
-              </div>
+              <div class="pillar-icon">🧠</div>
+              <h4>Conhecimento Coletivo</h4>
+              <p>
+                A cada dia, alguém traz um case novo, uma ferramenta fresh ou uma boa prática para o resto aprender.
+              </p>
             </div>
             <div class="pillar">
-              <span class="icon">🔒</span>
-              <div>
-                <h4>Cultura de segurança</h4>
-                <p>Discutimos ética, privacidade e estratégias de defesa com profundidade, sem perder o senso crítico.</p>
-              </div>
+              <div class="pillar-icon">🔒</div>
+              <h4>Cultura de Segurança</h4>
+              <p>Discutimos ética, privacidade e estratégias de defesa com profundidade, sem perder o senso crítico.</p>
             </div>
             <div class="pillar">
-              <span class="icon">🎉</span>
-              <div>
-                <h4>Descontração</h4>
-                <p>Segurança pode ser puxada, então valorizamos o clima leve: memes, stories de eventos e muita resenha.</p>
-              </div>
+              <div class="pillar-icon">🎉</div>
+              <h4>Descontração</h4>
+              <p>
+                Segurança pode ser puxada, então valorizamos o clima leve: memes, stories de eventos e muita resenha.
+              </p>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section highlight">
-        <div class="highlight-content">
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
           <h2>Chega mais, a porta está aberta.</h2>
           <p>
-            Clique e entra pro grupo: <strong>CyberSec Brasil</strong> é a comunidade para ficar por dentro do que acontece, trocar ideia com quem faz a segurança acontecer e se divertir no processo.
+            <strong>CyberSec Brasil</strong> é a comunidade para ficar por dentro do que acontece, trocar ideia com quem
+            faz a segurança acontecer e se divertir no processo.
           </p>
           <div class="hero-actions">
-            <a class="btn primary" href="https://chat.whatsapp.com/BvLPTibzM5rJVDZmaBNtAz" target="_blank" rel="noreferrer">Entrar no WhatsApp</a>
-            <a class="btn ghost" href="https://www.linkedin.com/groups/15432006/" target="_blank" rel="noreferrer">Participar do LinkedIn</a>
+            <a
+              class="btn btn-primary"
+              href="https://chat.whatsapp.com/BvLPTibzM5rJVDZmaBNtAz"
+              target="_blank"
+              rel="noreferrer"
+              >Entrar no WhatsApp</a
+            >
+            <a
+              class="btn btn-secondary"
+              href="https://www.linkedin.com/groups/15432006/"
+              target="_blank"
+              rel="noreferrer"
+              >Participar do LinkedIn</a
+            >
           </div>
         </div>
-      </section>
-    </main>
-
-    <footer id="contato" class="footer">
-      <div>
-        <h3>Junte-se ao CyberSec Brasil</h3>
-        <p>
-          Link direto para o grupo de WhatsApp: <a href="https://chat.whatsapp.com/BvLPTibzM5rJVDZmaBNtAz" target="_blank" rel="noreferrer">clique aqui</a>.<br />
-          Grupo no LinkedIn para discussões mais extensas e networking: <a href="https://www.linkedin.com/groups/15432006/" target="_blank" rel="noreferrer">acesse aqui</a>.
-        </p>
       </div>
-      <div class="footer-meta">
-        <span>© <span id="year"></span> CyberSec Brasil — comunidade independente.</span>
-        <span class="badge">Bem-vindo(a) • Colabore • Respeite</span>
+    </section>
+
+    <footer id="contato">
+      <div class="container">
+        <div class="footer-content">
+          <h3>// Junte-se ao CyberSec Brasil</h3>
+          <p>
+            Link direto para o grupo de WhatsApp:
+            <a href="https://chat.whatsapp.com/BvLPTibzM5rJVDZmaBNtAz" target="_blank" rel="noreferrer">clique aqui</a
+            >.<br />
+            Grupo no LinkedIn para discussões mais extensas e networking:
+            <a href="https://www.linkedin.com/groups/15432006/" target="_blank" rel="noreferrer">acesse aqui</a>.
+          </p>
+          <div class="footer-meta">
+            <span>© <span id="year"></span> CyberSec Brasil — comunidade independente</span>
+            <span class="badge">BEM-VINDO(A) • COLABORE • RESPEITE</span>
+          </div>
+        </div>
       </div>
     </footer>
 
-    <script src="./script.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
