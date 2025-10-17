@@ -10,9 +10,15 @@ const logger = createLogger('whatsapp-client');
 export class WhatsAppIngestionClient {
   private readonly messageBuffer: MessageBuffer;
   private client?: Client;
+  private ready = false;
+  private readyPromise: Promise<void>;
+  private resolveReady!: () => void;
 
   constructor(messageBuffer: MessageBuffer) {
     this.messageBuffer = messageBuffer;
+    this.readyPromise = new Promise((resolve) => {
+      this.resolveReady = resolve;
+    });
   }
 
   async start(): Promise<void> {
@@ -33,6 +39,8 @@ export class WhatsAppIngestionClient {
 
     this.client.on('ready', () => {
       logger.info('WhatsApp client is ready');
+      this.ready = true;
+      this.resolveReady();
     });
 
     this.client.on('auth_failure', (msg) => {
@@ -44,6 +52,9 @@ export class WhatsAppIngestionClient {
     });
 
     await this.client.initialize();
+    if (!this.ready) {
+      await this.readyPromise;
+    }
   }
 
   async sendSummary(chatId: string, summary: string): Promise<void> {
@@ -51,7 +62,21 @@ export class WhatsAppIngestionClient {
       throw new Error('WhatsApp client is not initialized');
     }
 
-    await this.client.sendMessage(chatId, summary);
+    if (!this.ready) {
+      await this.readyPromise;
+    }
+
+    const chat = await this.client.getChatById(chatId).catch((error) => {
+      logger.error('Failed to load chat before sending summary', { chatId, error: error instanceof Error ? error.message : error });
+      return undefined;
+    });
+
+    if (!chat) {
+      logger.warn('Target chat not found, skipping summary dispatch', { chatId });
+      return;
+    }
+
+    await chat.sendMessage(summary);
     logger.info('Summary message sent', { chatId });
   }
 
