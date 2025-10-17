@@ -30,7 +30,11 @@ async function main(): Promise<void> {
 }
 
 main().catch((error) => {
-  logger.error('Fatal error during bootstrap', { error });
+  const formatted =
+    error instanceof Error
+      ? { message: error.message, stack: error.stack }
+      : { error: JSON.stringify(error) };
+  logger.error('Fatal error during bootstrap', formatted);
   process.exit(1);
 });
 
