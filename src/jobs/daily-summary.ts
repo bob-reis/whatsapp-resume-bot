@@ -1,7 +1,8 @@
+import { formatInTimeZone } from 'date-fns-tz';
 import { env } from '../config/env';
 import { createLogger } from '../shared/logger';
 import { MessageBuffer } from '../shared/message-buffer';
-import { SummarizerPipeline } from '../summarizer/pipeline';
+import { SummarizerPipeline, type SummaryStats } from '../summarizer/pipeline';
 import { WhatsAppIngestionClient } from '../whatsapp/client';
 
 const logger = createLogger('daily-summary-job');
@@ -44,24 +45,28 @@ export class DailySummaryJob {
       return;
     }
 
-    const heading = this.buildHeading(windowStart);
-    const message = `${heading}\n\n${summary.summary}`;
+    const heading = this.buildHeading(summary.stats);
+    const message = `${heading}\n---\n\n${summary.summary}`;
 
     await this.whatsapp.sendSummary(chatId, message);
-    await this.buffer.clearOlderThan(chatId, new Date(Date.now() - env.summaryWindowMinutes * 60 * 1000));
+    const cutoff = new Date(Date.parse(summary.stats.windowEnd) + 1);
+    await this.buffer.clearOlderThan(chatId, cutoff);
 
     logger.info('Summary dispatched', {
       chatId,
       chunkCount: summary.chunkSummaries.length,
+      totalMessages: summary.stats.totalMessages,
     });
   }
 
-  private buildHeading(windowStart: Date): string {
-    const end = new Date();
-    const date = end.toLocaleDateString('pt-BR');
-    const start = windowStart.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    const finish = end.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    const hours = Math.round((Date.now() - windowStart.getTime()) / 1000 / 60 / 60);
-    return `Resumo das últimas ${hours}h — ${date} (${start} - ${finish})`;
+  private buildHeading(stats: SummaryStats): string {
+    const windowStart = new Date(stats.windowStart);
+    const windowEnd = new Date(stats.windowEnd);
+    const hours = env.summaryWindowMinutes / 60;
+    const hoursLabel = Number.isInteger(hours) ? hours.toString() : hours.toFixed(1);
+    const dateLabel = formatInTimeZone(windowEnd, stats.timeZone, 'dd/MM/yyyy');
+    const startLabel = formatInTimeZone(windowStart, stats.timeZone, 'HH:mm');
+    const endLabel = formatInTimeZone(windowEnd, stats.timeZone, 'HH:mm');
+    return `🕒 Resumo das últimas ${hoursLabel}h – ${dateLabel}\nPeríodo coberto: ${startLabel} - ${endLabel} (${stats.timeZone})`;
   }
 }
